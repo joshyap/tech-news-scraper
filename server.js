@@ -2,8 +2,17 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 
+var Note = require("./models/Note.js");
+var User = require("./models/User.js");
+
 var mongoose = require("mongoose");
 mongoose.Promise = Promise;
+
+// Initialize Express
+var app = express();
+
+// Make public a static dir
+app.use(express.static("public"));
 
 // Database configuration with mongoose
 if(process.env.NODE_ENV==="production"){
@@ -24,8 +33,6 @@ db.once("open", function() {
 });
 
 var PORT = 8080;
-
-var app = express();
 
 app.use(express.static(process.cwd() + "/public"));
 app.use(bodyParser.urlencoded({ extended: false }));
