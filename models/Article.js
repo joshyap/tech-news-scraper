@@ -19,7 +19,12 @@ var ArticleSchema = new Schema({
   summary: {
     type: String,
     required: false
-  }
+  },
+  // use an array here to allow multiple comments
+  comment: [{
+    type: Schema.Types.ObjectId,
+    ref: "Comment"
+  }]
 });
 
 // Create the Article model with the ArticleSchema
